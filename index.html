@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AX융합원㈜ | 비정형 데이터를 자산으로, AX 자동화 시스템</title>
+<meta name="description" content="AX융합원㈜은 5W1H 6채널 구조화 기술로 흩어진 비정형 데이터를 검색·답변·자동 의사결정까지 잇는 자기진화형 AX 자동화 시스템을 개발·상용화합니다.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --navy:#16216B;
+    --navy-deep:#0E1648;
+    --blue:#2E6BE4;
+    --blue-soft:#5C8DF0;
+    --gold:#C9A24B;
+    --gold-soft:#E4C779;
+    --wine:#7B1F2A;
+    --wine-soft:#A33446;
+    --ink:#0F1530;
+    --slate:#5B6478;
+    --line:#E4E8F2;
+    --paper:#FFFFFF;
+    --mist:#F5F7FB;
+    --mist-2:#EEF2FB;
+    --maxw:1160px;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;
+    color:var(--ink);background:var(--paper);
+    line-height:1.65;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{
+    font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--blue);display:inline-flex;align-items:center;gap:9px;
+  }
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--blue);display:inline-block}
+
+  /* ---------- arrow signature ---------- */
+  .ax-arrow{display:inline-block;vertical-align:-3px}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);
+    backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:18px;letter-spacing:-.02em}
+  .logomark{
+    width:34px;height:34px;border-radius:9px;background:var(--navy);
+    display:grid;place-items:center;color:#fff;font-weight:900;font-size:13px;position:relative;overflow:hidden;
+  }
+  .logomark span{position:relative;z-index:2;letter-spacing:-.04em}
+  .logomark::after{
+    content:"";position:absolute;right:-6px;bottom:-6px;width:26px;height:26px;
+    background:var(--blue);transform:rotate(45deg);border-radius:5px;z-index:1;
+  }
+  .brand small{display:block;font-size:11px;font-weight:600;color:var(--slate);letter-spacing:.02em;margin-top:-2px}
+  .navlinks{display:flex;gap:30px;align-items:center}
+  .navlinks a{font-size:14.5px;font-weight:600;color:#39415C}
+  .navlinks a:hover{color:var(--navy)}
+  .navlinks a.nav-cta{
+    background:transparent;color:var(--navy);padding:8px 18px;border-radius:8px;
+    font-size:14px;font-weight:800;border:1.5px solid var(--navy);transition:background .2s var(--ease),color .2s
+  }
+  .navlinks a.nav-cta:hover{background:var(--navy);color:#fff}
+  .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{display:block;width:22px;height:2px;background:var(--ink);margin:4px 0}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;color:#fff;overflow:hidden;padding:84px 0 96px;
+    background:
+      radial-gradient(140% 120% at 85% 0%, #1C2C8A 0%, #16216B 38%, #0E1648 100%);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(58% 52% at 80% 40%, rgba(46,107,228,.48), transparent 60%),
+      radial-gradient(46% 50% at 6% 108%, rgba(123,31,42,.40), transparent 62%),
+      radial-gradient(36% 42% at 95% 82%, rgba(201,162,75,.20), transparent 65%);
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:46px 46px;
+    -webkit-mask-image:radial-gradient(70% 70% at 50% 40%,#000,transparent 75%);
+            mask-image:radial-gradient(70% 70% at 50% 40%,#000,transparent 75%);
+  }
+  .hero .wrap{position:relative;z-index:2}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;min-height:480px}
+  .hero-copy{max-width:560px}
+  .hero .eyebrow{color:var(--gold-soft)}
+  .hero .eyebrow::before{background:var(--gold-soft)}
+  .hero h1{
+    font-size:clamp(30px,4.6vw,54px);font-weight:800;line-height:1.14;
+    letter-spacing:-.035em;margin:20px 0 20px;
+  }
+  .hero h1 b{color:#9FBEFF;font-weight:800}
+  .hero p.lead{font-size:clamp(15px,1.7vw,19px);color:#C9D4F2;max-width:50ch;font-weight:400}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:11px;
+    font-weight:700;font-size:15px;transition:transform .2s var(--ease),background .2s,box-shadow .2s
+  }
+  .btn-primary{background:#fff;color:var(--navy)}
+  .btn-primary:hover{transform:translateY(-2px);background:#EAF0FF}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.32);color:#fff}
+  .btn-ghost:hover{border-color:#fff;transform:translateY(-2px)}
+  .btn-gold{background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:#2A2208;box-shadow:0 14px 30px -14px rgba(201,162,75,.7)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 18px 38px -14px rgba(201,162,75,.85)}
+  .gold-cta{flex-direction:column;gap:2px;line-height:1.18;padding:14px 34px}
+  .gold-cta .l1{font-size:15px;font-weight:800;color:var(--wine);opacity:1;letter-spacing:-.01em}
+  .gold-cta .l2{font-size:18px;font-weight:900;display:inline-flex;align-items:center;gap:8px;letter-spacing:-.01em}
+
+  /* emblem */
+  .emblem-wrap{display:flex;flex-direction:column;align-items:center;gap:22px;justify-self:center;perspective:1000px}
+  .emblem{
+    position:relative;width:min(340px,76vw);aspect-ratio:1;cursor:pointer;
+    transition:transform .4s var(--ease);transform-style:preserve-3d
+  }
+  .emblem:hover{transform:scale(1.04)}
+  .ring{position:absolute;inset:0;border-radius:50%;}
+  .ring.r1{border:1px solid rgba(201,162,75,.55);box-shadow:0 0 60px rgba(46,107,228,.35) inset}
+  .ring.r2{inset:9%;border:1px dashed rgba(159,190,255,.45);animation:spin 26s linear infinite}
+  .ring.r3{inset:20%;border:1px dashed rgba(163,52,70,.55);animation:spin 30s linear infinite reverse}
+  .emblem:hover .ring.r3{animation-duration:11s}
+  .emblem:hover .ring.r2{animation-duration:9s}
+  .swoosh{position:absolute;inset:4%;border-radius:50%;
+    background:conic-gradient(from 0deg,
+      transparent 0 6%,
+      rgba(46,107,228,.95) 22%,
+      rgba(92,141,240,.4) 34%,
+      transparent 44% 56%,
+      rgba(163,52,70,.45) 66%,
+      rgba(123,31,42,.95) 78%,
+      transparent 94% 100%);
+    -webkit-mask:radial-gradient(circle, transparent 60%, #000 61%);
+            mask:radial-gradient(circle, transparent 60%, #000 61%);
+    animation:spin 7s linear infinite}
+  .emblem:hover .swoosh{animation-duration:2.6s}
+  .core{
+    position:absolute;inset:24%;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #233091, #16216B 60%, #0E1648);
+    display:grid;place-items:center;align-content:center;gap:2px;text-align:center;
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(201,162,75,.4)
+  }
+  .core .mark{font-size:clamp(40px,7vw,64px);font-weight:900;letter-spacing:-.05em;line-height:1;
+    background:linear-gradient(180deg,#fff,#BFD0FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .core .mark .x{color:var(--gold-soft);-webkit-text-fill-color:var(--gold-soft)}
+  .core .mark-sub{font-size:clamp(9px,1.5vw,12px);font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--gold-soft);margin-top:4px}
+  .dot6{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--gold-soft);
+    box-shadow:0 0 12px rgba(228,199,121,.9);top:3%;left:calc(50% - 4.5px)}
+  .dot6.wine{background:var(--wine-soft);box-shadow:0 0 12px rgba(163,52,70,.95)}
+  .orbit{position:absolute;inset:0;animation:spin 20s linear infinite}
+  .emblem:hover .orbit{animation-duration:8s}
+  .emblem .hint{position:absolute;left:50%;bottom:-2px;transform:translateX(-50%);font-size:11px;
+    color:#9FBEFF;letter-spacing:.12em;text-transform:uppercase;font-weight:700;opacity:.7;white-space:nowrap}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .hero-stats{
+    display:flex;gap:48px;flex-wrap:wrap;margin-top:54px;padding-top:30px;
+    border-top:1px solid rgba(255,255,255,.16);position:relative;z-index:2
+  }
+  .stat .num{font-size:clamp(26px,3.4vw,38px);font-weight:800;letter-spacing:-.03em;line-height:1}
+  .stat .num b{color:var(--gold-soft)}
+  .stat .lab{font-size:13px;color:#A9B6DC;margin-top:8px}
+
+  /* ---------- section base ---------- */
+  section{padding:96px 0}
+  .sec-head{max-width:62ch;margin-bottom:54px}
+  .sec-head h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.2;margin:18px 0 16px}
+  .sec-head p{font-size:17px;color:var(--slate)}
+
+  /* ---------- problem ---------- */
+  .problem{background:var(--mist)}
+  .problem-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .donut{position:relative;width:min(360px,80vw);margin-inline:auto;aspect-ratio:1}
+  .donut svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .donut .center{
+    position:absolute;inset:0;display:grid;place-items:center;text-align:center
+  }
+  .donut .center .big{font-size:54px;font-weight:800;color:var(--wine);letter-spacing:-.03em;line-height:1}
+  .donut .center .sm{font-size:14px;color:var(--slate);margin-top:6px;font-weight:600}
+  .legend{display:flex;gap:22px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+  .legend span{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:#4a5169}
+  .dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+  .problem-copy h3{font-size:23px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+  .problem-copy p{color:var(--slate);font-size:16.5px;margin-bottom:14px}
+  .problem-copy strong{color:var(--wine)}
+  .problem .eyebrow{color:var(--wine-soft)}
+  .problem .eyebrow::before{background:var(--wine-soft)}
+
+  /* ---------- tech / 5W1H ---------- */
+  .tech .sec-head{text-align:center;margin-inline:auto}
+  .tech .eyebrow{justify-content:center}
+  .channels{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:8px}
+  .chan{
+    border:1px solid var(--line);border-radius:14px;padding:22px 16px;text-align:center;
+    background:var(--paper);transition:transform .25s var(--ease),box-shadow .25s,border-color .25s
+  }
+  .chan:hover{transform:translateY(-5px);border-color:var(--blue);box-shadow:0 16px 36px -22px rgba(22,33,107,.5)}
+  .chan .w{
+    font-size:20px;font-weight:800;color:var(--blue);font-family:"Pretendard",sans-serif;
+    letter-spacing:-.02em;margin-bottom:8px
+  }
+  .chan .k{font-size:14px;font-weight:700;margin-bottom:3px}
+  .chan .d{font-size:12px;color:var(--slate);line-height:1.5}
+  .flow{
+    display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+    margin-top:44px;font-weight:700;color:var(--navy);font-size:15px
+  }
+  .flow .node{background:var(--mist-2);border-radius:99px;padding:9px 18px}
+  .flow .arr{color:var(--blue);font-weight:900}
+  .flow .node.last{background:var(--wine);color:#fff}
+
+  /* ---------- services ---------- */
+  .services{
+    color:#fff;
+    background:
+      radial-gradient(70% 90% at 100% 0%, rgba(123,31,42,.55) 0%, transparent 55%),
+      radial-gradient(60% 80% at 0% 100%, rgba(46,107,228,.30) 0%, transparent 55%),
+      var(--navy-deep);
+  }
+  .services .eyebrow{color:var(--gold-soft)}.services .eyebrow::before{background:var(--gold-soft)}
+  .services .sec-head h2{color:#fff}
+  .services .sec-head p{color:#A9B6DC}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .svc{
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;
+    padding:28px 24px;transition:background .25s,transform .25s var(--ease),border-color .25s;position:relative;overflow:hidden
+  }
+  .svc:hover{background:rgba(46,107,228,.16);transform:translateY(-5px)}
+  .svc .no{font-size:13px;font-weight:800;color:#7E9DEC;letter-spacing:.05em}
+  .svc h4{font-size:21px;font-weight:800;margin:14px 0 10px;letter-spacing:-.02em}
+  .svc p{font-size:14px;color:#B9C4E4;line-height:1.6}
+  .svc .ax-arrow{position:absolute;right:20px;top:24px;opacity:.5}
+  .svc-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+  .svc-chips span{font-size:11.5px;font-weight:600;color:#9FBEFF;background:rgba(46,107,228,.16);border-radius:99px;padding:5px 11px}
+  .svc-link{display:inline-block;margin-top:18px;font-size:13.5px;font-weight:800;color:#fff;letter-spacing:-.01em}
+  .svc:hover .svc-link{color:#9FBEFF}
+  /* featured SaaS card — wine border only */
+  .svc.feature{border:1.5px solid var(--wine-soft)}
+  .svc.feature:hover{border-color:var(--wine)}
+
+  /* ---------- usage / browser mockup ---------- */
+  .usage{background:var(--mist)}
+  .usage .sec-head{text-align:center;margin-inline:auto}
+  .usage .eyebrow{justify-content:center}
+  .browser{
+    max-width:1000px;margin:0 auto;border-radius:18px;overflow:hidden;background:#fff;
+    border:1px solid var(--line);box-shadow:0 50px 90px -50px rgba(15,21,48,.55)
+  }
+  .browser-bar{background:var(--navy);display:flex;align-items:center;gap:14px;padding:13px 20px}
+  .dots{display:flex;gap:7px}
+  .dots i{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.34);display:block}
+  .browser-url{background:rgba(255,255,255,.12);color:#cdd8f5;font-size:12.5px;border-radius:8px;padding:6px 16px;font-weight:600}
+  .sys-stats{margin-left:auto;display:flex;gap:20px;color:#9FBEFF;font-size:11.5px;font-weight:600}
+  .sys-stats b{color:#fff;font-weight:800}
+  .tabs{display:flex;gap:2px;background:#fff;border-bottom:1px solid var(--line);padding:0 10px;overflow-x:auto}
+  .tab{
+    padding:15px 18px;font-size:13.5px;font-weight:700;color:var(--slate);cursor:pointer;
+    border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s;background:none;border-top:0;border-left:0;border-right:0;font-family:inherit
+  }
+  .tab.active{color:var(--navy);border-bottom-color:var(--blue)}
+  .tab:hover{color:var(--navy)}
+  .panel{display:none;padding:34px;min-height:330px}
+  .panel.active{display:block;animation:fadeup .4s var(--ease)}
+  @keyframes fadeup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .panel h5{font-size:16px;font-weight:800;margin-bottom:18px;color:var(--ink);display:flex;align-items:center;gap:9px}
+  .panel h5 .pi{width:26px;height:26px;border-radius:7px;background:var(--mist-2);display:grid;place-items:center;font-size:14px}
+  .u-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+  .u-stat{background:var(--mist);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .u-stat .n{font-size:26px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+  .u-stat .l{font-size:12.5px;color:var(--slate);margin-top:4px}
+  .u-list{display:grid;gap:8px}
+  .u-row{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--mist);border-radius:10px;font-size:13.5px}
+  .u-row .badge{font-size:11px;font-weight:800;color:#fff;background:var(--blue);border-radius:6px;padding:3px 8px}
+  .u-row .g{color:var(--slate);margin-left:auto;font-size:12px}
+  .u-drop{border:2px dashed #B9C6E6;border-radius:14px;padding:46px;text-align:center;background:var(--mist)}
+  .u-drop .ic{font-size:38px}
+  .u-drop .t{font-weight:800;margin-top:12px}
+  .u-drop .s{color:var(--slate);font-size:13px;margin-top:6px}
+  .u-files{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .u-files span{font-size:12px;font-weight:600;color:var(--navy);background:var(--mist-2);border-radius:8px;padding:7px 12px}
+  .u-search{display:flex;align-items:center;gap:10px;background:var(--mist);border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:14px;color:var(--slate)}
+  .u-search .ic{color:var(--blue);font-weight:800}
+  .u-results{display:grid;gap:10px;margin-top:16px}
+  .u-result{border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .u-result .h{font-weight:700;font-size:14px}
+  .u-result .m{font-size:12.5px;color:var(--slate);margin-top:4px;display:flex;gap:12px;flex-wrap:wrap}
+  .u-result .m b{color:var(--blue);font-weight:700}
+  .u-chat{display:grid;gap:14px}
+  .bub{max-width:78%;padding:13px 16px;border-radius:14px;font-size:13.5px;line-height:1.55}
+  .bub.q{background:var(--navy);color:#fff;justify-self:end;border-bottom-right-radius:4px}
+  .bub.a{background:var(--mist);border:1px solid var(--line);justify-self:start;border-bottom-left-radius:4px}
+  .bub.a b{color:var(--navy)}
+  .u-dash{display:grid;grid-template-columns:1.4fr 1fr;gap:34px;align-items:end}
+  .bars{display:flex;align-items:flex-end;gap:14px;height:180px;padding-top:10px}
+  .bars .bar{flex:1;background:linear-gradient(var(--blue),var(--navy));border-radius:7px 7px 0 0;position:relative}
+  .bars .bar span{position:absolute;top:-22px;left:0;right:0;text-align:center;font-size:12px;font-weight:800;color:var(--navy)}
+  .bars .bar small{position:absolute;bottom:-24px;left:0;right:0;text-align:center;font-size:11.5px;color:var(--slate)}
+  .u-donut{text-align:center}
+  .u-donut svg{width:150px;height:150px;transform:rotate(-90deg)}
+  .u-donut .lab{font-size:12.5px;color:var(--slate);margin-top:30px}
+  .u-report{border:1px solid var(--line);border-radius:12px;padding:26px;background:var(--mist)}
+  .u-report .rh{font-size:15px;font-weight:800;color:var(--navy);padding-bottom:14px;border-bottom:2px solid var(--navy);margin-bottom:16px;display:flex;justify-content:space-between}
+  .u-report .ln{height:9px;background:#D7DEEF;border-radius:5px;margin:9px 0}
+  .u-report .ln.w1{width:92%}.u-report .ln.w2{width:78%}.u-report .ln.w3{width:85%}.u-report .ln.short{width:45%}
+  .u-report .key{height:9px;background:var(--blue);border-radius:5px;width:30%;margin:18px 0 9px}
+  .usage-note{text-align:center;font-size:13px;color:var(--slate);margin-top:18px}
+  .usage-cta{text-align:center;margin-top:26px}
+
+  /* ---------- pricing ---------- */
+  .pricing .sec-head{text-align:center;margin-inline:auto}
+  .pricing .eyebrow{justify-content:center;color:var(--wine-soft)}
+  .pricing .eyebrow::before{background:var(--wine-soft)}
+  .price-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .price{border:1px solid var(--line);border-top:3px solid var(--wine);border-radius:14px;padding:22px 18px 24px;background:var(--mist);text-align:center}
+  .price .pno{font-size:12px;font-weight:800;color:var(--wine-soft)}
+  .price .pt{font-size:14.5px;font-weight:700;margin:10px 0 8px;min-height:2.6em;display:flex;align-items:center;justify-content:center}
+  .price .pv{font-size:20px;font-weight:800;color:var(--wine);letter-spacing:-.02em}
+  .price .pv small{display:block;font-size:12px;color:var(--slate);font-weight:600;margin-top:4px}
+
+  /* ---------- about ---------- */
+  .about{background:var(--mist)}
+  .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .card-dir{
+    background:var(--navy);color:#fff;border-radius:20px;padding:40px;position:relative;overflow:hidden
+  }
+  .card-dir::after{content:"";position:absolute;right:-30px;bottom:-30px;width:140px;height:140px;
+    background:radial-gradient(circle,rgba(46,107,228,.6),transparent 70%)}
+  .card-dir .role{font-size:13px;color:#9FBEFF;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .card-dir .name{font-size:34px;font-weight:800;margin:8px 0 4px;letter-spacing:-.02em}
+  .card-dir .deg{font-size:14.5px;color:#C9D4F2}
+  .card-dir ul{list-style:none;margin-top:24px;border-top:1px solid rgba(255,255,255,.16);padding-top:20px;position:relative;z-index:2}
+  .card-dir ul li{font-size:14px;color:#D2DBF2;padding:6px 0 6px 20px;position:relative}
+  .card-dir ul li::before{content:"▸";position:absolute;left:0;color:#7E9DEC}
+  .about-copy h2{font-size:clamp(24px,3.2vw,34px);font-weight:800;letter-spacing:-.03em;margin-bottom:18px}
+  .about-copy p{color:var(--slate);font-size:16.5px;margin-bottom:16px}
+  .about-copy .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .tag{font-size:13px;font-weight:700;color:var(--navy);background:var(--mist-2);border-radius:99px;padding:8px 15px}
+
+  /* ---------- contact ---------- */
+  .contact{background:var(--ink);color:#fff}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .contact h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.15}
+  .contact .sub{color:#9AA3C0;font-size:17px;margin-top:18px;max-width:40ch}
+  .info{display:grid;gap:2px;background:rgba(255,255,255,.06);border-radius:16px;overflow:hidden}
+  .info .row{display:flex;align-items:flex-start;gap:18px;padding:22px 26px;background:rgba(255,255,255,.02)}
+  .info .row .ic{
+    width:40px;height:40px;border-radius:10px;background:rgba(46,107,228,.22);color:#9FBEFF;
+    display:grid;place-items:center;flex:none;font-size:18px
+  }
+  .info .row .k{font-size:12.5px;color:#8E97B8;font-weight:700;letter-spacing:.04em}
+  .info .row .v{font-size:16px;font-weight:600;margin-top:2px}
+  .info .row .v a:hover{color:#9FBEFF}
+
+  /* ---------- footer ---------- */
+  footer{background:#0A1038;color:#9098BC;padding:48px 0;font-size:13.5px}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .foot .fb{display:flex;align-items:center;gap:11px;color:#fff;font-weight:800;font-size:16px}
+  .foot a:hover{color:#fff}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- org chart ---------- */
+  .org .sec-head{text-align:center;margin-inline:auto}
+  .org .eyebrow{justify-content:center}
+  .orgchart{display:flex;flex-direction:column;align-items:center}
+  .org-top{display:flex;justify-content:center}
+  .node-box{
+    background:var(--navy);color:#fff;border-radius:14px;padding:20px 30px;text-align:center;
+    min-width:190px;box-shadow:0 18px 40px -24px rgba(22,33,107,.6)
+  }
+  .node-box.lead{background:var(--navy);position:relative;overflow:hidden}
+  .node-box.lead::after{content:"";position:absolute;right:-24px;top:-24px;width:90px;height:90px;
+    background:radial-gradient(circle,rgba(46,107,228,.65),transparent 70%)}
+  .node-box .role{font-size:12.5px;color:#9FBEFF;font-weight:700;letter-spacing:.06em;position:relative;z-index:2}
+  .node-box .nm{font-size:21px;font-weight:800;margin-top:5px;letter-spacing:-.02em;position:relative;z-index:2}
+  .org-vline{width:2px;height:34px;background:var(--blue)}
+  .org-hline{height:2px;background:var(--blue);width:66%;max-width:660px}
+  .org-stems{display:flex;justify-content:space-between;width:66%;max-width:660px}
+  .org-stems .s{width:2px;height:30px;background:var(--blue)}
+  .org-team{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;width:66%;max-width:660px}
+  .team-box{
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 18px;text-align:center;
+    transition:transform .25s var(--ease),border-color .25s,box-shadow .25s
+  }
+  .team-box:hover{transform:translateY(-5px);border-color:var(--blue);box-shadow:0 16px 36px -24px rgba(22,33,107,.45)}
+  .team-box .role{font-size:13px;font-weight:700;color:var(--blue)}
+  .team-box .nm{font-size:19px;font-weight:800;margin-top:6px;color:var(--ink);letter-spacing:-.02em}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    .navlinks{display:none}
+    .burger{display:block}
+    .hero-grid{grid-template-columns:1fr;gap:36px;text-align:center;min-height:0}
+    .hero-copy{max-width:none;margin:0 auto}
+    .hero .eyebrow{justify-content:center}
+    .hero p.lead{margin-inline:auto}
+    .hero-cta{justify-content:center}
+    .emblem-wrap{order:-1}
+    .emblem{width:min(280px,72vw)}
+    .problem-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+    .channels{grid-template-columns:repeat(3,1fr)}
+    .svc-grid{grid-template-columns:repeat(2,1fr)}
+    .price-grid{grid-template-columns:repeat(2,1fr)}
+    .org-team,.org-hline,.org-stems{width:100%}
+    .org-team{gap:10px}
+    .team-box{padding:16px 8px}
+    .team-box .role{font-size:12px}
+    .team-box .nm{font-size:16px;margin-top:4px}
+    .u-stats{grid-template-columns:1fr}
+    .u-dash{grid-template-columns:1fr;gap:48px}
+    .sys-stats{display:none}
+    .panel{padding:24px}
+    section{padding:72px 0}
+    .hero{padding:72px 0 84px}
+  }
+  @media(max-width:520px){
+    .channels{grid-template-columns:repeat(2,1fr)}
+    .svc-grid,.price-grid{grid-template-columns:1fr}
+    .hero-stats{gap:28px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== HEADER ====== -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <span class="logomark"><span>AX</span></span>
+      <span>AX융합원㈜<small>AI Transformation</small></span>
+    </a>
+    <nav class="navlinks">
+      <a href="#problem">왜 AX인가</a>
+      <a href="#tech">핵심 기술</a>
+      <a href="#services">서비스</a>
+      <a href="#usage">활용 화면</a>
+      <a href="#about">회사 소개</a>
+      <a href="#org">조직도</a>
+      <a class="nav-cta" href="#contact">문의하기</a>
+    </nav>
+    <button class="burger" aria-label="메뉴 열기" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">AX = AI Transformation</span>
+        <h1>비정형 데이터를 <b>자산</b>으로<br>바꾸는 AX 자동화 시스템</h1>
+        <p class="lead">100년 넘게 검증된 5W1H 프레임워크를 AI 입력 데이터로 바꾸는 6채널 구조화 기술. 흩어진 데이터를 자동으로 정리·학습시켜 검색·답변·자동 의사결정까지 잇습니다.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#contact">도입 문의하기
+            <svg class="ax-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#tech">기술 살펴보기</a>
+        </div>
+      </div>
+
+      <div class="emblem-wrap">
+        <a class="emblem" href="https://axdata.co.kr/saas.html" target="_blank" rel="noopener" id="emblem" aria-label="AX 자동화 시스템 체험하기">
+          <div class="ring r1"></div>
+          <div class="ring r2"></div>
+          <div class="ring r3"></div>
+          <div class="swoosh"></div>
+          <div class="orbit"><span class="dot6"></span></div>
+          <div class="orbit" style="animation-delay:-3.33s"><span class="dot6 wine"></span></div>
+          <div class="orbit" style="animation-delay:-6.66s"><span class="dot6"></span></div>
+          <div class="orbit" style="animation-delay:-10s"><span class="dot6 wine"></span></div>
+          <div class="orbit" style="animation-delay:-13.33s"><span class="dot6"></span></div>
+          <div class="orbit" style="animation-delay:-16.66s"><span class="dot6 wine"></span></div>
+          <div class="core"><div class="mark">A<span class="x">X</span></div><div class="mark-sub">AI Transformation</div></div>
+        </a>
+        <a class="btn btn-gold gold-cta" href="https://axdata.co.kr/saas.html" target="_blank" rel="noopener">
+          <span class="l1">AX 자동화 시스템</span>
+          <span class="l2">체험하기
+            <svg class="ax-arrow" width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><div class="num"><b>80%</b></div><div class="lab">기업·기관 데이터 중 비정형 비중</div></div>
+      <div class="stat"><div class="num">5W1H<b>·6채널</b></div><div class="lab">자기진화형 구조화 방법론</div></div>
+      <div class="stat"><div class="num">특허 <b>5</b>건</div><div class="lab">등록 1 · 출원 4</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PROBLEM ====== -->
+<section class="problem" id="problem">
+  <div class="wrap problem-grid">
+    <div class="reveal">
+      <div class="donut">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#D7DEEF" stroke-width="18"/>
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#7B1F2A" stroke-width="18"
+                  stroke-dasharray="314.16" stroke-dashoffset="62.83" stroke-linecap="butt"/>
+        </svg>
+        <div class="center"><div><div class="big">80%</div><div class="sm">비정형 데이터</div></div></div>
+      </div>
+      <div class="legend">
+        <span><i class="dot" style="background:#7B1F2A"></i>비정형 (문서·이미지·기록) 80%</span>
+        <span><i class="dot" style="background:#D7DEEF"></i>정형 (DB·표) 20%</span>
+      </div>
+    </div>
+    <div class="problem-copy reveal">
+      <span class="eyebrow">The Problem</span>
+      <h3 style="margin-top:16px">검색도 활용도 안 된 채<br>버려지는 80%</h3>
+      <p>개인·기업·기관이 가진 데이터의 <strong>80%는 문서·이미지·기록 같은 비정형 데이터</strong>입니다. 정작 가장 큰 자산인데도, 정리되지 않아 검색되지 않고 AI에 학습시킬 수도 없습니다.</p>
+      <p>AX융합원은 이 흩어진 데이터를 <strong>6채널로 자동 구조화</strong>해, 검색·답변·자동 의사결정까지 바로 잇는 시스템으로 바꿉니다. 데이터를 모으고, AX로 활용하고, 수익까지 연결합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== TECH ====== -->
+<section class="tech" id="tech">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Core Technology</span>
+      <h2>5W1H 6채널 구조화 기술</h2>
+      <p>1902년 키플링이 정립하고 Gartner·NIA가 재조명한 6하원칙을, AI가 바로 학습할 수 있는 입력 데이터 구조로 변환합니다.</p>
+    </div>
+    <div class="channels reveal">
+      <div class="chan"><div class="w">Who</div><div class="k">누가</div><div class="d">주체·담당·조직</div></div>
+      <div class="chan"><div class="w">When</div><div class="k">언제</div><div class="d">시점·기간·일정</div></div>
+      <div class="chan"><div class="w">Where</div><div class="k">어디서</div><div class="d">장소·현장·위치</div></div>
+      <div class="chan"><div class="w">What</div><div class="k">무엇을</div><div class="d">대상·항목·내용</div></div>
+      <div class="chan"><div class="w">Why</div><div class="k">왜</div><div class="d">목적·원인·근거</div></div>
+      <div class="chan"><div class="w">How</div><div class="k">어떻게</div><div class="d">방법·절차·결과</div></div>
+    </div>
+    <div class="flow reveal">
+      <span class="node">비정형 데이터</span><span class="arr">→</span>
+      <span class="node">5W1H 6채널 구조화</span><span class="arr">→</span>
+      <span class="node">AI 학습·검색</span><span class="arr">→</span>
+      <span class="node last">자동 의사결정</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SERVICES ====== -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Services</span>
+      <h2>4가지 방식으로 제공합니다</h2>
+      <p>도입 환경과 보안 요구에 맞춰 SaaS부터 온디바이스까지 선택할 수 있습니다.</p>
+    </div>
+    <div class="svc-grid">
+      <a class="svc feature reveal" href="https://axdata.co.kr/saas.html" target="_blank" rel="noopener">
+        <svg class="ax-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="#7E9DEC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="no">01</div><h4>SaaS</h4>
+        <p>가입 즉시 웹에서 데이터를 올리고 구조화·검색·대시보드까지 바로 이용합니다.</p>
+        <div class="svc-chips"><span>5W1H A/B/C 품질 평가</span><span>브라우저 체험</span></div>
+        <span class="svc-link">바로 체험 →</span>
+      </a>
+      <a class="svc reveal" href="https://axdata.co.kr/mobile.html" target="_blank" rel="noopener">
+        <svg class="ax-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="#7E9DEC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="no">02</div><h4>스마트폰</h4>
+        <p>현장을 촬영하면 즉시 업로드·구조화되어 모바일에서 바로 보고서로 전환됩니다.</p>
+        <div class="svc-chips"><span>카메라 자동</span><span>촬영 즉시 저장</span></div>
+        <span class="svc-link">시작하기 →</span>
+      </a>
+      <a class="svc reveal" href="https://axdata.co.kr/ondevice.html" target="_blank" rel="noopener">
+        <svg class="ax-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="#7E9DEC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="no">03</div><h4>온디바이스</h4>
+        <p>설치형 자체 AI로 데이터를 외부로 보내지 않고 사내 장비에서 안전하게 동작합니다.</p>
+        <div class="svc-chips"><span>오프라인</span><span>자체 보안</span></div>
+        <span class="svc-link">시작하기 →</span>
+      </a>
+      <a class="svc reveal" href="https://axdata.co.kr/cloud.html" target="_blank" rel="noopener">
+        <svg class="ax-arrow" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="#7E9DEC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="no">04</div><h4>클라우드</h4>
+        <p>대용량 데이터를 실시간 저장하고 가명화 코드로 안전한 데이터 거래까지 잇습니다.</p>
+        <div class="svc-chips"><span>실시간 저장</span><span>가명화 거래</span></div>
+        <span class="svc-link">시작하기 →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== USAGE ====== -->
+<section class="usage" id="usage">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">In Action</span>
+      <h2>활용 화면</h2>
+      <p>업로드부터 구조화·검색·AI 질의응답·대시보드·보고서까지, 하나의 화면에서 이어집니다.</p>
+    </div>
+
+    <div class="browser reveal">
+      <div class="browser-bar">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="browser-url">www.axdata.co.kr / saas</div>
+        <div class="sys-stats">
+          <span>시스템 ID <b>AX-2026-0509</b></span>
+          <span>데이터 <b>1,248</b>개</span>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-p="p-home">홈</button>
+        <button class="tab" data-p="p-upload">파일 업로드</button>
+        <button class="tab" data-p="p-search">검색</button>
+        <button class="tab" data-p="p-ai">AI 질의응답</button>
+        <button class="tab" data-p="p-dash">대시보드</button>
+        <button class="tab" data-p="p-report">보고서</button>
+      </div>
+
+      <!-- 홈 -->
+      <div class="panel active" id="p-home">
+        <h5><span class="pi">🏠</span>홈 — 구조화 현황 요약</h5>
+        <div class="u-stats">
+          <div class="u-stat"><div class="n">1,248</div><div class="l">구조화된 데이터</div></div>
+          <div class="u-stat"><div class="n">6채널</div><div class="l">5W1H 구조화 채널</div></div>
+          <div class="u-stat"><div class="n">98.2%</div><div class="l">A/B/C 품질 통과율</div></div>
+        </div>
+        <div class="u-list">
+          <div class="u-row"><span class="badge">Who</span> 한빛제조 생산팀 일일보고서 <span class="g">방금 전</span></div>
+          <div class="u-row"><span class="badge">When</span> 2026-06 설비점검 기록 <span class="g">3분 전</span></div>
+          <div class="u-row"><span class="badge">How</span> 공정 개선 회의록 <span class="g">12분 전</span></div>
+        </div>
+      </div>
+
+      <!-- 업로드 -->
+      <div class="panel" id="p-upload">
+        <h5><span class="pi">📤</span>파일 업로드 — 비정형 데이터 투입</h5>
+        <div class="u-drop">
+          <div class="ic">⬆️</div>
+          <div class="t">문서·이미지·기록을 끌어다 놓으세요</div>
+          <div class="s">PDF · DOCX · XLSX · JPG · PNG · 일일보고서까지 자동 인식</div>
+        </div>
+        <div class="u-files"><span>📄 보고서.pdf</span><span>🖼 현장사진.jpg</span><span>📊 점검표.xlsx</span><span>📝 회의록.docx</span></div>
+      </div>
+
+      <!-- 검색 -->
+      <div class="panel" id="p-search">
+        <h5><span class="pi">🔍</span>검색 — 5W1H 채널 질의</h5>
+        <div class="u-search"><span class="ic">⌕</span> "6월 설비점검에서 발견된 이상 항목"</div>
+        <div class="u-results">
+          <div class="u-result"><div class="h">2026-06-14 생산라인 설비점검 보고</div><div class="m"><span>Where <b>2공장 B라인</b></span><span>What <b>베어링 과열</b></span><span>품질 <b>A</b></span></div></div>
+          <div class="u-result"><div class="h">2026-06-09 정기점검 결과</div><div class="m"><span>Who <b>설비팀 최진호</b></span><span>How <b>윤활 교체</b></span><span>품질 <b>A</b></span></div></div>
+        </div>
+      </div>
+
+      <!-- AI 질의응답 -->
+      <div class="panel" id="p-ai">
+        <h5><span class="pi">💬</span>AI 질의응답 — 구조화 데이터 기반 답변</h5>
+        <div class="u-chat">
+          <div class="bub q">이번 달 설비 이상 원인과 조치를 요약해줘.</div>
+          <div class="bub a">6월 점검에서 <b>2공장 B라인 베어링 과열</b>이 확인되었습니다. 원인은 윤활 부족이며, <b>윤활유 교체와 정렬 보정</b>으로 조치 완료되었습니다. 동일 유형 재발은 없습니다. <b>(근거: 6월 점검 보고 2건)</b></div>
+        </div>
+      </div>
+
+      <!-- 대시보드 -->
+      <div class="panel" id="p-dash">
+        <h5><span class="pi">📊</span>대시보드 — 채널별 구조화 현황</h5>
+        <div class="u-dash">
+          <div class="bars">
+            <div class="bar" style="height:55%"><span>312</span><small>Who</small></div>
+            <div class="bar" style="height:78%"><span>441</span><small>When</small></div>
+            <div class="bar" style="height:40%"><span>226</span><small>Where</small></div>
+            <div class="bar" style="height:92%"><span>518</span><small>What</small></div>
+            <div class="bar" style="height:34%"><span>194</span><small>Why</small></div>
+            <div class="bar" style="height:66%"><span>372</span><small>How</small></div>
+          </div>
+          <div class="u-donut">
+            <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="48" fill="none" stroke="#D7DEEF" stroke-width="16"/><circle cx="60" cy="60" r="48" fill="none" stroke="#2E6BE4" stroke-width="16" stroke-dasharray="301.6" stroke-dashoffset="54"/></svg>
+            <div class="lab">품질 A등급 <b style="color:var(--navy)">82%</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 보고서 -->
+      <div class="panel" id="p-report">
+        <h5><span class="pi">📄</span>보고서 — 자동 생성·내보내기</h5>
+        <div class="u-report">
+          <div class="rh"><span>6월 설비 운영 분석 보고서</span><span style="font-size:12px;color:var(--slate);font-weight:600">AX 자동 생성</span></div>
+          <div class="ln w1"></div><div class="ln w2"></div><div class="ln w3"></div>
+          <div class="key"></div>
+          <div class="ln w2"></div><div class="ln w1"></div><div class="ln short"></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="usage-note">※ 실제 운영 화면 예시입니다. 도서 「AX 자동화 시스템」의 SaaS 활용 캡처 이미지로 교체할 수 있습니다.</p>
+    <div class="usage-cta">
+      <a class="btn btn-primary" href="https://axdata.co.kr/saas.html" target="_blank" rel="noopener" style="background:var(--navy);color:#fff">지금 바로 체험하기
+        <svg class="ax-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PRICING ====== -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2>이용 요금</h2>
+      <p>가입은 1만원으로 시작하고, 사용한 만큼 합리적으로 운영합니다.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price reveal"><div class="pno">01</div><div class="pt">가입비</div><div class="pv">10,000원<small>1회</small></div></div>
+      <div class="price reveal"><div class="pno">02</div><div class="pt">구조화</div><div class="pv">1,000원<small>1GB당</small></div></div>
+      <div class="price reveal"><div class="pno">03</div><div class="pt">사용료</div><div class="pv">120,000원<small>연</small></div></div>
+      <div class="price reveal"><div class="pno">04</div><div class="pt">온디바이스 구축</div><div class="pv">1,000,000원<small>M/D당</small></div></div>
+      <div class="price reveal"><div class="pno">05</div><div class="pt">온디바이스 유지관리</div><div class="pv">360,000원<small>연</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ABOUT ====== -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="card-dir reveal">
+      <div class="role">원장 · Director</div>
+      <div class="name">배종옥</div>
+      <div class="deg">이론과 실무를 겸비한 공학박사 (NCS200107)</div>
+      <ul>
+        <li>창의융합AI 공학박사 · 국립한밭대학교 (2026.02)</li>
+        <li>컴퓨터시스템 · 국립충남대학교 (2016)</li>
+        <li>산업공학 · 고려대학교 (1991)</li>
+        <li>산업현장교수 24개 기관 · 1,030시간</li>
+        <li>기술지도사 R&D·인증 지도·심사·강의 등 2,200여건</li>
+        <li>학술논문 11편 · 특허 5건</li>
+      </ul>
+    </div>
+    <div class="about-copy reveal">
+      <span class="eyebrow">About</span>
+      <h2 style="margin-top:16px">데이터를 자산으로,<br>AX를 현장으로</h2>
+      <p>AX융합원㈜은 비정형 데이터를 자동으로 구조화·학습시키는 자기진화형 AX 자동화 시스템을 개발·상용화합니다. 개념부터 구축·활용·수익화까지, 흩어진 데이터를 모으고 AX 자동화 시스템을 활용해 수익으로 잇는 전 과정을 함께합니다.</p>
+      <p>경영자·실무자, AX 도입 담당자, 데이터·AI를 공부하는 분까지 — 데이터를 자산으로 바꾸려는 모두를 위한 파트너입니다.</p>
+      <div class="tags">
+        <span class="tag">5W1H 6채널 구조화</span>
+        <span class="tag">자기진화형 AI</span>
+        <span class="tag">특허 5건</span>
+        <span class="tag">단독 개발·상용화</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ORG ====== -->
+<section class="org" id="org">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Organization</span>
+      <h2>조직도</h2>
+      <p>교육·관리·기술 3개 팀이 AX 자동화 시스템의 도입과 운영을 책임집니다.</p>
+    </div>
+    <div class="orgchart reveal">
+      <div class="org-top">
+        <div class="node-box lead"><div class="role">원장 · Director</div><div class="nm">배종옥</div></div>
+      </div>
+      <div class="org-vline"></div>
+      <div class="org-hline"></div>
+      <div class="org-stems"><span class="s"></span><span class="s"></span><span class="s"></span></div>
+      <div class="org-team">
+        <div class="team-box"><div class="role">교육팀장</div><div class="nm">문재신</div></div>
+        <div class="team-box"><div class="role">관리팀장</div><div class="nm">성낙청</div></div>
+        <div class="team-box"><div class="role">기술팀장</div><div class="nm">최진호</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <span class="eyebrow">Contact</span>
+      <h2 style="margin-top:16px">AX 도입,<br>지금 상담하세요</h2>
+      <p class="sub">도입 환경과 데이터 규모를 알려주시면 가장 적합한 방식을 제안해 드립니다.</p>
+    </div>
+    <div class="info reveal">
+      <div class="row">
+        <div class="ic">🌐</div>
+        <div><div class="k">홈페이지</div><div class="v"><a href="https://www.axci.co.kr" target="_blank" rel="noopener">www.axci.co.kr</a></div></div>
+      </div>
+      <div class="row">
+        <div class="ic">✉️</div>
+        <div><div class="k">이메일</div><div class="v"><a href="mailto:abc@axci.co.kr">abc@axci.co.kr</a></div></div>
+      </div>
+      <div class="row">
+        <div class="ic">📞</div>
+        <div><div class="k">전화</div><div class="v"><a href="tel:042-322-3300">042-322-3300</a></div></div>
+      </div>
+      <div class="row">
+        <div class="ic">📠</div>
+        <div><div class="k">팩스</div><div class="v">042-322-3301</div></div>
+      </div>
+      <div class="row">
+        <div class="ic">📍</div>
+        <div><div class="k">주소</div><div class="v">대전광역시 유성구 가정북로 96, 706호<br>(장동, 대전일자리경제진흥원)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="fb"><span class="logomark" style="width:30px;height:30px;font-size:12px"><span>AX</span></span> AX융합원㈜</div>
+      <div style="margin-top:10px">대전광역시 유성구 가정북로 96, 706호 (장동, 대전일자리경제진흥원)<br>TEL 042-322-3300 · FAX 042-322-3301 · abc@axci.co.kr</div>
+    </div>
+    <div style="text-align:right">
+      <div>비정형 데이터를 자산으로 바꾸는 AX 자동화 시스템</div>
+      <div style="margin-top:8px">© 2026 AX융합원㈜. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*60)+'ms';io.observe(el)});
+
+  // emblem mouse tilt
+  const emb=document.getElementById('emblem');
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(emb && !reduce && window.matchMedia('(pointer:fine)').matches){
+    const move=(e)=>{
+      const r=emb.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-0.5;
+      const y=(e.clientY-r.top)/r.height-0.5;
+      emb.style.transform=`scale(1.05) rotateY(${x*16}deg) rotateX(${-y*16}deg)`;
+    };
+    emb.addEventListener('mousemove',move);
+    emb.addEventListener('mouseleave',()=>{emb.style.transform='';});
+  }
+
+  // usage tabs
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById(t.dataset.p).classList.add('active');
+    });
+  });
+
+  // simple mobile menu (jump links)
+  document.getElementById('burger').addEventListener('click',()=>{
+    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+  });
+</script>
+</body>
+</html>
